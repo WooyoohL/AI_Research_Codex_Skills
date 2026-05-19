@@ -1,29 +1,22 @@
-# Decision-Value Experiment Plan for Cxxx
+# Decision-Value Experiment Plan
 
-## Experiment mode
+## Experiment ID
 
-exploration / evidence / reviewer-defense
+## Problem addressed
 
-## Necessary evidence
+Which part of the stated problem does this experiment answer?
 
-## Supporting evidence
+## Hypothesis
 
-## Cuttable evidence
+## Decision this experiment informs
 
-## Future work
+## Minimum valid setup
 
----
+## Invalid cheap proxy to avoid
 
-## E001
+## Possible outcomes and decisions
 
-- Hypothesis:
-- Decision this experiment informs:
-- Minimum valid setup:
-- Invalid cheap proxy to avoid:
-- Expected outcomes:
-  - Outcome A:
-    - Decision:
-  - Outcome B:
-    - Decision:
-- Stop condition:
-- Status: planned / running / completed / stopped
+## Information gain
+
+## Stop condition
+

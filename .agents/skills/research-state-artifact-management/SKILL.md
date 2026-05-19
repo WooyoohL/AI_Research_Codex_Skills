@@ -49,6 +49,7 @@ project_name/
     evaluation_map.md
     reading_notes/
   02_signals/
+02_problems/
     signal_bank.md
   03_claims/
     candidate_claims.md
@@ -141,3 +142,15 @@ Recommended next step:
 - Continue with the orchestrator (`ai-research-orchestrator`) chooses the next stage, unless the exit condition is not met.
 
 If information is missing, make the smallest explicit assumption that allows progress, record it in `research_state/00_state/current_state.md`, and mark the status as provisional.
+
+
+## Problem formulation checkpoint
+
+After `$problem-formulation`, update:
+
+```text
+research_state/02_problems/problem_formulations.md
+research_state/00_state/current_state.md
+```
+
+`current_state.md` should include the active problem before the active claim.

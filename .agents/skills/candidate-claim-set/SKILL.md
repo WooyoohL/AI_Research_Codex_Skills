@@ -1,13 +1,16 @@
 ---
 name: candidate-claim-set
-description: Use to convert research signals or vague ideas into 2–4 falsifiable candidate claims without prematurely committing to one paper shape.
+description: Use after problem-formulation to convert clearly defined research problems into 2–4 falsifiable candidate claims without prematurely committing to one paper shape.
 ---
 
 # 03. Candidate Claim Set
 
 ## Purpose
 
-将 signal 或 vague idea 转成少量可证伪 candidate claims。不要一开始只锁定一个 claim。
+If the input is only a signal, vague method, or broad direction, first use `$problem-formulation`. Candidate claims must be grounded in a clear problem statement.
+
+
+将已经定义清楚的 research problem 转成少量可证伪 candidate claims。不要一开始只锁定一个 claim。
 
 ## Why multiple claims
 
@@ -15,12 +18,14 @@ description: Use to convert research signals or vague ideas into 2–4 falsifiab
 
 ## Process
 
-对每个 active signal，生成 2–4 个 candidate claims。不要超过 4 个。
+对每个 active problem，生成 2–4 个 candidate claims。不要超过 4 个。
 
 每个 claim 必须包含：
 
 ```text
 Claim ID:
+Source problem:
+Problem statement:
 Main claim:
 Scope:
 Falsifiable prediction:
@@ -59,7 +64,7 @@ Current RAG failures under conflicting evidence are caused less by retrieval mis
 
 可以进入 research move router，当：
 
-- 每个 active signal 有 2–4 个 candidate claims；
+- 每个 active problem 有 2–4 个 candidate claims；
 - 每个 claim 有 falsifiable prediction 和 possible disproof；
 - claim 状态已记录在 claim ledger。
 
@@ -84,3 +89,12 @@ Recommended next step:
 - Continue with `research-move-router`, unless the exit condition is not met.
 
 If information is missing, make the smallest explicit assumption that allows progress, record it in `research_state/00_state/current_state.md`, and mark the status as provisional.
+
+
+## Additional failure mode
+
+- Claim has no clear source problem and is only packaging a method, module, or metric improvement.
+
+## State updates
+
+Update `research_state/03_claims/candidate_claims.md` and `research_state/03_claims/claim_ledger.md`. Link every claim to a Problem ID from `research_state/02_problems/problem_formulations.md`.

@@ -30,6 +30,9 @@ Decision-value 原则在三种模式都成立，但“决策价值”的定义�
 
 ```text
 Experiment ID:
+Problem addressed:
+Which part of the stated problem does this experiment answer?
+
 Hypothesis:
 Decision this experiment informs:
 Minimum valid setup:
@@ -132,3 +135,8 @@ Recommended next step:
 - Continue with `reviewer-risk-check`, unless the exit condition is not met.
 
 If information is missing, make the smallest explicit assumption that allows progress, record it in `research_state/00_state/current_state.md`, and mark the status as provisional.
+
+
+## Problem alignment rule
+
+If an experiment improves a metric but does not clarify the stated problem or support/refute the active claim, mark it as low decision value. Experiments should answer the problem, not merely decorate the paper.

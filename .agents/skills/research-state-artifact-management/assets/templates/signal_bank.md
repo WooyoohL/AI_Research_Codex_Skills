@@ -1,13 +1,5 @@
 # Signal Bank
 
-## S001
+| Signal ID | Source | Abnormal phenomenon | Why it matters | Linked problem | Candidate move | Status |
+|---|---|---|---|---|---|---|
 
-- Source:
-- Observed phenomenon:
-- Why it is abnormal:
-- Assumption challenged:
-- Potential research moves:
-- Initial strength:
-- Uncertainty:
-- Next check:
-- Status: active / parked / rejected

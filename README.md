@@ -1,62 +1,51 @@
-# AI Research Idea Discovery Skills for Codex
+# AI Research Codex Skills
 
-A modular Codex skill suite for AI/ML research idea discovery, paper-claim development, prior-work triangulation, scope control, decision-value experiments, and reviewer-risk checking.
+一个用于 AI/ML 研究 idea 发现、筛选和论文 proposal 成形的模块化 Codex skill pipeline。
 
-This repository is designed so you can unzip it into a repository root or your home directory and invoke the skills directly from Codex.
+它不是自动生成“顶会 idea”的机器，而是帮助研究者把一个模糊方向、文献观察、失败实验或初步想法，逐步推进成：
 
-## What this is
+- 代表性文献地图；
+- research signals；
+- 明确 research problems；
+- candidate claims；
+- prior-work collision analysis；
+- residual contributions；
+- paper-unit scope 判断；
+- decision-value experiment plan；
+- reviewer-risk check；
+- paper pitch 和执行计划。
 
-This is **not** an automatic top-conference paper generator. It is a structured workflow for converting a broad research direction, paper list, failed experiment, or vague idea into a paper-shaped research proposal with:
+---
 
-- a representative literature map;
-- research signals and tensions;
-- candidate falsifiable claims;
-- prior-work collision analysis;
-- residual contribution judgment;
-- paper-unit scope control;
-- decision-value experiment planning;
-- top reviewer-risk checks;
-- persistent state artifacts.
+## 仓库结构
 
-## Install
-
-### Option A: Repo-scoped install
-
-Unzip this package into the root of the GitHub repository where you want Codex to use the skills:
-
-```bash
-unzip AI_Research_Codex_Skills_v1.zip -d /path/to/your/repo
-cd /path/to/your/repo
-codex
-```
-
-The important path is:
+本仓库使用 Codex 原生 skill 目录结构：
 
 ```text
 .agents/skills/<skill-name>/SKILL.md
 ```
 
-Codex reads repository skills from `.agents/skills` under the current directory or its parent directories up to the repository root.
-
-### Option B: User-global install
-
-Unzip this package into your home directory:
-
-```bash
-unzip AI_Research_Codex_Skills_v1.zip -d ~
-```
-
-This creates:
+主要入口：
 
 ```text
-~/.agents/skills/
+$ai-research-orchestrator
 ```
 
-These skills will be available from any repository.
+除非你明确知道要调用哪个子 skill，否则建议先从 orchestrator 开始。
 
-## Quick start
+---
 
-From Codex, invoke the orchestrator explicitly:
+## 安装方式
+
+### 方式 A：直接使用本仓库
+
+```bash
+git clone https://github.com/WooyoohL/AI_Research_Codex_Skills.git
+cd AI_Research_Codex_Skills
+codex
+```
+
+然后调用：
 
 ```text
 $ai-research-orchestrator
@@ -65,33 +54,92 @@ $ai-research-orchestrator
 请先创建 research_state 目录，然后从 literature bootstrap 开始。
 ```
 
-Or, if you already have a concrete idea:
-
-```text
-$ai-research-orchestrator
-
-我有一个 idea：multi-agent reasoning 的收益可能主要来自 token budget 而不是真正 collaboration。
-请把它转成 candidate claims，并做 claim-prior-work triangulation。
-```
-
-## Initialize project state
-
-The workflow relies on persistent state documents instead of long chat context.
-
-Run:
+### 方式 B：复制到另一个项目
 
 ```bash
-python .agents/skills/research-state-artifact-management/scripts/init_research_state.py \
-  --project-name "Multi-Agent Reasoning Evaluation"
+mkdir -p /path/to/your/project/.agents
+cp -r .agents/skills /path/to/your/project/.agents/
+cd /path/to/your/project
+codex
 ```
 
-This creates:
+### 方式 C：全局安装
+
+```bash
+mkdir -p ~/.agents
+cp -r .agents/skills ~/.agents/
+```
+
+---
+
+## 核心流程
+
+推荐流程：
+
+```text
+00. Entry & Source Intake
+01. Representative Literature Bootstrapping
+02. Research Signal Mining
+03. Problem Formulation
+04. Candidate Claim Set
+05. Research Move Router
+06. Claim–Prior Work Triangulation
+07. Paper-Unit Scope Gate
+08. Decision-Value Experiment Planner
+09. Reviewer Risk Check
+10. Paper Shape & Execution Plan
+X.  Research State & Artifact Management
+```
+
+关键依赖是：
+
+```text
+signal → problem → claim → prior work → residual contribution → paper unit → experiments
+```
+
+---
+
+## 为什么新增 Problem Formulation
+
+一个 research idea 首先要回答：
+
+```text
+我解决、解释、测量或反驳什么问题？
+```
+
+Signal 只是线索，problem 才是论文要处理的对象，claim 是论文要证明的主张，method/experiment 是支持 claim 的手段。
+
+例子：
+
+```text
+Signal:
+很多 multi-agent reasoning paper 报告提升，但没有严格控制 token budget。
+
+Problem:
+我们无法判断 multi-agent reasoning 的收益到底来自 agent collaboration，还是只是更多 sampling / token budget。
+
+Claim:
+在固定 token budget 下，许多 reported multi-agent gains 会显著下降；真正的 collaboration gain 只出现在需要信息分工或冲突协调的任务中。
+```
+
+没有清楚 problem，就不要生成 claim；没有清楚 claim，就不要查 novelty；没有 prior-work collision，就不要判断 paper-worthiness。
+
+---
+
+## 初始化 research_state
+
+```bash
+python .agents/skills/research-state-artifact-management/scripts/init_research_state.py   --project-name "Multi-Agent Reasoning Evaluation"
+```
+
+它会创建：
 
 ```text
 research_state/
   00_state/
   01_literature/
   02_signals/
+  02_problems/
   03_claims/
   04_prior_work/
   05_scope/
@@ -101,143 +149,105 @@ research_state/
   99_archive/
 ```
 
-The two source-of-truth files are:
+最重要的文件：
 
 ```text
 research_state/00_state/current_state.md
 research_state/00_state/decision_log.md
+research_state/02_problems/problem_formulations.md
+research_state/03_claims/claim_ledger.md
+research_state/06_experiments/experiment_log.md
 ```
 
-## How the skills chain together
+---
 
-Codex skills are not normal function calls. A skill does not automatically call another skill as code.
+## 使用示例
 
-The chaining works through:
-
-1. `$ai-research-orchestrator` deciding the next stage;
-2. explicit `$skill-name` invocation when useful;
-3. state files under `research_state/`;
-4. each skill's exit condition.
-
-Default order:
-
-```text
-entry-source-intake
-→ representative-literature-bootstrap
-→ research-signal-mining
-→ candidate-claim-set
-→ research-move-router
-→ claim-prior-work-triangulation
-→ paper-unit-scope-gate
-→ decision-value-experiment-planner
-→ reviewer-risk-check
-→ paper-shape-generator
-```
-
-Infrastructure:
-
-```text
-research-state-artifact-management
-```
-
-Specialist lens:
-
-```text
-research-target-reframing
-```
-
-## Available skills
-
-| Skill | Use when |
-|---|---|
-| `$ai-research-orchestrator` | Entry point; routes through the pipeline and maintains state. |
-| `$entry-source-intake` | Identify entry state, sources, target area, and resource constraints. |
-| `$representative-literature-bootstrap` | Build a working field map from representative papers. |
-| `$research-signal-mining` | Extract abnormal phenomena, tensions, evaluation artifacts, and failure modes. |
-| `$candidate-claim-set` | Convert signals or vague ideas into 2–4 falsifiable candidate claims. |
-| `$research-move-router` | Classify claims as method, evaluation, mechanism, negative result, scaling, system, theory, dataset, or taxonomy. |
-| `$claim-prior-work-triangulation` | Collide claims with prior work and extract residual contribution. |
-| `$paper-unit-scope-gate` | Decide whether residual contribution is too thin, too broad, or paper-shaped. |
-| `$decision-value-experiment-planner` | Plan experiments by hypothesis and decision value, not table-filling. |
-| `$reviewer-risk-check` | Identify top fatal reviewer risks late in the process. |
-| `$paper-shape-generator` | Produce thesis, contribution bullets, evidence plan, risks, and execution plan. |
-| `$research-state-artifact-management` | Create and maintain `research_state/` artifacts. |
-| `$research-target-reframing` | Specialist lens for target/formulation/supervision reframing and accidental complexity. |
-
-## Example workflows
-
-### 1. Start from a broad direction
+### 从新方向开始
 
 ```text
 $ai-research-orchestrator
 
-方向：LLM agents / multi-agent reasoning。
-目标：找一个可投 ICLR/COLM 的 idea。
-资源：API-only 或小模型实验。
-请先做 entry intake，并说明 literature bootstrap 需要哪些代表性论文类型。
+我要在 LLM agents / multi-agent reasoning 方向找一个可投 ICLR 或 COLM 的论文 idea。
+请先初始化 research_state，然后从代表性文献阅读和 field map 开始。
 ```
 
-Expected result:
-
-- creates or requests `research_state/`;
-- records constraints;
-- routes to `$representative-literature-bootstrap`.
-
-### 2. Start from a paper list
+### 从已有论文开始
 
 ```text
-$representative-literature-bootstrap
+$ai-research-orchestrator
 
-请阅读 research_state/01_literature/paper_index.md 中的论文，优先看 introduction、related work、problem formulation、experiment setup、limitations。
-输出 field_map.md 和至少 3 个 research signals。
+我已经有一组 RAG 相关论文。请先建立 literature field map，然后从 introduction、related work、limitations 和 evaluation setup 中提取 research signals。
 ```
 
-### 3. Start from a vague idea
+### 从已有 idea 开始
 
 ```text
-$candidate-claim-set
+$ai-research-orchestrator
 
-Idea: RAG 的主要失败可能不是 retrieval miss，而是 retrieved evidence conflict。
-请生成 2–4 个 candidate claims，并写出 falsifiable prediction 和 possible disproof。
+我有一个 idea：现有 multi-agent reasoning 的提升主要来自更高 token budget，而不是真正的 agent collaboration。
+请先定义它要解决的问题，再转成 candidate claims。
 ```
 
-### 4. Check whether an idea survives prior work
+### 直接调用 problem formulation
 
 ```text
-$claim-prior-work-triangulation
+$problem-formulation
 
-Active claim: C002。
-请根据 literature/field_map.md 和 paper_index.md，分析它和最近工作的 overlap，提取 residual contribution。
+请把这个 signal 转成清楚的 research problem：很多 long-context RAG paper 没有区分 retrieval failure 和 evidence conflict。
 ```
 
-### 5. Plan early experiments without table-filling
+### 设计实验
 
 ```text
 $decision-value-experiment-planner
 
-Claim C002 已通过初步 scope gate。
-请设计最小但有效的 kill-test。
-注意：最小实验不能用失真的 cheap proxy，例如该完整训练的任务只跑 10 epoch，或用过弱 baseline。
+基于当前 active problem 和 active claim，设计第一轮实验。实验必须有决策价值，不要为了填满 ablation 表格而设计低信息增益实验。
 ```
 
-## Design principles
+---
 
-1. No clear claim, no novelty check.
-2. No prior-work collision, no final paper-worthiness judgment.
-3. Evaluate residual contribution, not raw idea.
-4. Do not expand scope to compensate for a weak core claim.
-5. Experiments must have decision value.
-6. Minimal experiments must preserve the problem essence; invalid cheap proxies are not acceptable.
-7. Every decision-relevant milestone must checkpoint to `research_state/`.
-8. Novelty can be partially verified; do not claim novelty from memory.
+## 核心原则
 
-## Notes for GitHub use
+1. 先建立 field map，再追逐 idea。
+2. 从 signal 开始，不从方法开始。
+3. 先定义 problem，再生成 claim。
+4. 生成 candidate claims，而不是泛泛的 ideas。
+5. 评估 residual contribution，而不是 raw idea。
+6. 不要强行套 target reframing。
+7. 不要崇拜简单。
+8. 不要用扩大 scope 来掩盖 weak novelty。
+9. 实验必须有决策价值。
+10. 最小实验必须有效，不能用失真的 cheap proxy 偷懒。
+11. 研究状态必须 checkpoint。
 
-Commit the `.agents/skills/` directory with this README. Teammates using Codex from the repository root or a subdirectory should be able to mention the skills with `$skill-name`.
+---
 
-Optional: copy `AGENTS.example.md` to `AGENTS.md` if you want Codex to default to this research workflow in the repository.
+## Skills 如何环环相扣
 
-## References
+Codex skills 不是普通程序里的函数调用链。连续性来自：
 
-- Codex Agent Skills: https://developers.openai.com/codex/skills
-- Codex AGENTS.md guidance: https://developers.openai.com/codex/guides/agents-md
+1. `$ai-research-orchestrator` 判断下一阶段；
+2. 每个阶段更新 `research_state/`；
+3. 每个 skill 有 exit condition；
+4. 必要时显式调用下一个 `$skill-name`。
+
+Chat 是工作区，文档是长期记忆。
+
+---
+
+## Status
+
+Version: `v1.1`
+
+主要更新：新增 `$problem-formulation`，将流程从：
+
+```text
+signal → claim → prior work
+```
+
+改为：
+
+```text
+signal → problem → claim → prior work
+```

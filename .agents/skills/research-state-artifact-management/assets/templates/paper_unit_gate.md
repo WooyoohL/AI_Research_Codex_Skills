@@ -1,10 +1,14 @@
-# Paper-Unit Scope Gate for Cxxx
+# Paper-Unit Scope Gate
+
+## Problem statement
+
+## Why this problem matters
 
 ## Residual main claim
 
-## Scope verdict
+## Problem-solution fit
 
-not enough / workshop-scale / promising if strengthened / well-scoped / too broad / split / abandon
+Does the residual claim actually solve, explain, measure, or refute the stated problem?
 
 ## Too-thin risk
 
@@ -12,10 +16,9 @@ not enough / workshop-scale / promising if strengthened / well-scoped / too broa
 
 ## Minimum publishable unit
 
-## Required strengthening
-
 ## What to cut
 
-## What to defer
+## What to strengthen
 
-## Next action
+## Scope verdict
+

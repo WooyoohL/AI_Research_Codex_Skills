@@ -35,6 +35,24 @@ What research moves could it support?
 What evidence would make it real rather than anecdotal?
 ```
 
+
+
+## Signal vs Problem
+
+A signal is a clue. It is not yet the research problem.
+
+Example:
+
+```text
+Signal:
+Multi-agent papers often do not control token budget.
+
+Problem:
+The community cannot tell whether reported multi-agent gains come from genuine collaboration or from increased sampling/token budget.
+```
+
+Do not jump directly from signal to method or final claim. After signal mining, use `$problem-formulation` before `$candidate-claim-set`.
+
 ## Output
 
 写入 `02_signals/signal_bank.md`：
@@ -52,7 +70,7 @@ Next check:
 
 ## Exit condition
 
-可以进入 candidate claim set，当：
+可以进入 problem formulation，当：
 
 - 至少有 3 个 signals，或用户明确指定一个 signal；
 - 每个 active signal 有来源和异常点；
@@ -75,6 +93,6 @@ State artifacts to update:
 
 Recommended next step:
 
-- Continue with `candidate-claim-set`, unless the exit condition is not met.
+- Continue with `problem-formulation`, unless the exit condition is not met.
 
 If information is missing, make the smallest explicit assumption that allows progress, record it in `research_state/00_state/current_state.md`, and mark the status as provisional.

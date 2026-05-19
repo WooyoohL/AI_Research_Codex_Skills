@@ -2,49 +2,36 @@
 
 ## Project
 
-- Research area:
-- Target venue / track:
-- Resource constraints:
-- Current entry state:
+## Current stage
+
+## Active problem
+
+- Problem ID:
+- Problem statement:
+- Why it matters:
+- Problem owner:
+- Current gap:
+- Status:
 
 ## Active claim
 
 - Claim ID:
 - Main claim:
-- Current paper shape:
-- Status: speculative / literature-anchored / partially verified / experimentally supported / paper-ready
+- Status:
+
+## Current paper shape
+
+## Literature coverage
 
 ## Residual contribution
 
-- Prior-work coverage status:
-- Key closest works:
-- What remains after prior work:
-
-## Evidence status
-
-- Necessary evidence completed:
-- Necessary evidence missing:
-- Current experiment mode: exploration / evidence / reviewer-defense
+## Current evidence status
 
 ## Top risks
 
-1.
-2.
-3.
-
 ## Next decision
-
-- Decision to make:
-- What would change the decision:
 
 ## Next action
 
-- Specific next reading / experiment / writing task:
+## Links to relevant docs
 
-## Links
-
-- Field map:
-- Claim ledger:
-- Collision map:
-- Experiment plan:
-- Decision log:

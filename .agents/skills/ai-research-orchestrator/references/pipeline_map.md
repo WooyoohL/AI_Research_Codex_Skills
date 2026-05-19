@@ -4,15 +4,25 @@
 00 entry-source-intake
 01 representative-literature-bootstrap
 02 research-signal-mining
-03 candidate-claim-set
-04 research-move-router
-05 claim-prior-work-triangulation
-06 paper-unit-scope-gate
-07 decision-value-experiment-planner
-08 reviewer-risk-check
-09 paper-shape-generator
+03 problem-formulation
+04 candidate-claim-set
+05 research-move-router
+06 claim-prior-work-triangulation
+07 paper-unit-scope-gate
+08 decision-value-experiment-planner
+09 reviewer-risk-check
+10 paper-shape-generator
 X  research-state-artifact-management
-S  research-target-reframing
 ```
 
-Use `ai-research-orchestrator` as the entry point. It does not run the whole flow automatically; it routes one bounded stage at a time and writes state artifacts.
+Specialist lens:
+
+```text
+research-target-reframing
+```
+
+Core dependency:
+
+```text
+signal → problem → claim → prior work → residual contribution → paper unit → experiments
+```

@@ -75,6 +75,9 @@ already done
 
 ## Output
 
+Include both problem-level and claim-level overlap. A claim can be new while the problem is old, or the problem can be newly important while the claim is already covered.
+
+
 写入：
 
 ```text

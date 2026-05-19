@@ -23,3 +23,6 @@ Core rules:
 4. Experiments must have decision value.
 5. Minimal experiments must preserve the problem essence.
 6. Checkpoint every decision-relevant milestone.
+
+
+For AI/ML research idea discovery, first ensure the workflow distinguishes signal, problem, claim, and method. Use `$problem-formulation` before `$candidate-claim-set` when the problem is not explicit.

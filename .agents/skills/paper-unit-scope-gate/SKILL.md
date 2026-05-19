@@ -7,6 +7,9 @@ description: Use after prior-work triangulation to judge whether the residual co
 
 ## Purpose
 
+Judge the residual contribution against the stated problem, not only against the claim. A paper can have a clear residual claim but still be weak if the underlying problem is unimportant or poorly framed.
+
+
 只评估 residual contribution 是否构成一篇 scope 合适的论文。不要评估 raw idea。
 
 ## Input
@@ -61,6 +64,16 @@ Resource constraints:
 
 ## Output
 
+Required input context:
+
+```text
+Problem statement:
+Why the problem matters:
+Residual main claim:
+Prior-work overlap:
+```
+
+
 ```text
 Residual main claim:
 Scope verdict: not enough / workshop-scale / promising if strengthened / well-scoped / too broad / split / abandon
@@ -99,3 +112,21 @@ Recommended next step:
 - Continue with `decision-value-experiment-planner`, unless the exit condition is not met.
 
 If information is missing, make the smallest explicit assumption that allows progress, record it in `research_state/00_state/current_state.md`, and mark the status as provisional.
+
+
+## Problem-solution fit check
+
+Ask:
+
+- Does the residual claim actually solve, explain, measure, or refute the stated problem?
+- If the claim is true, does it change how the problem should be studied or solved?
+- Is the problem important enough to justify a paper?
+- What adjacent problems are explicitly out of scope?
+
+Add `problem is not important enough even if the claim is true` as a too-thin risk.
+
+Paper-unit test:
+
+```text
+If this paper could keep only one problem, one main claim, three contribution bullets, and three core experiments/analyses, would it still stand?
+```
