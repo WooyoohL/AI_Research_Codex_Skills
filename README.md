@@ -234,20 +234,4 @@ Codex skills 不是普通程序里的函数调用链。连续性来自：
 
 Chat 是工作区，文档是长期记忆。
 
----
 
-## Status
-
-Version: `v1.1`
-
-主要更新：新增 `$problem-formulation`，将流程从：
-
-```text
-signal → claim → prior work
-```
-
-改为：
-
-```text
-signal → problem → claim → prior work
-```
